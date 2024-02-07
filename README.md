@@ -1,122 +1,128 @@
-Cabot
-=====
-[![Build Status](https://travis-ci.org/arachnys/cabot.svg?branch=master)](https://travis-ci.org/arachnys/cabot) 
-[![PyPI version](https://badge.fury.io/py/cabot.svg)](https://badge.fury.io/py/cabot)
-[![Coverage Status](https://codecov.io/github/arachnys/cabot/coverage.svg?branch=master)](https://codecov.io/github/arachnys/cabot?branch=master)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Gitter](https://img.shields.io/gitter/room/arachnys/cabot.svg)](https://gitter.im/arachnys/cabot)
-
-## Maintainers wanted
-
-**Cabot is stable and used by hundreds of companies and individuals in production, but it is not actively maintained. We would like to hand over maintenance of the project to one or more responsible and experienced maintainers. Please email cabot@arachnys.com with some information about yourself (github profile and/or CV) if you are interested.**
-
-## Why choose Cabot
-
-Cabot is a free, open-source, self-hosted infrastructure monitoring platform that provides some of the best features of [PagerDuty](http://www.pagerduty.com), [Server Density](http://www.serverdensity.com), [Pingdom](http://www.pingdom.com) and [Nagios](http://www.nagios.org) without their cost and complexity. (Nagios, I'm mainly looking at you.)
-
-It provides a web interface that allows you to monitor services (e.g. "Stage Redis server", "Production ElasticSearch cluster") and send telephone, sms or hipchat/email alerts to your on-duty team if those services start misbehaving or go down - all without writing a line of code. Best of all, you can use data that you're already pushing to Graphite/statsd to generate alerts, rather than implementing and maintaining a whole new system of data collectors.
-
-You can alert based on:
-
-*   Metrics from [Graphite](https://github.com/graphite-project/graphite-web)
-*   Status code and response content of web endpoints
-*   [Jenkins](http://jenkins-ci.org) build statuses
-
-We built Cabot as a Christmas project at [Arachnys](https://www.arachnys.com) because we couldn't wrap our heads around Nagios, and nothing else out there seemed to fit our use case. We're open-sourcing it in the hope that others find it useful.
-
-Cabot is written in Python and uses [Django](https://www.djangoproject.com/), [Bootstrap](http://getbootstrap.com/), [Font Awesome](http://fontawesome.io) and a whole host of other goodies under the hood.
-
-## Screenshots
-
-### Services dashboard
-
-![Services dashboard](https://dl.dropboxusercontent.com/s/cgpxe3929is2uar/cabot-service-dashboard.png?dl=1&token_hash=AAHrlDisUzWRxpg892LhlKQWFRNSkZKD7l_zdSxND-YKhw)
-
-### Single service overview
-
-![Individual service overview](https://dl.dropboxusercontent.com/s/541p0kbq3pwone6/cabot-service-status.png?dl=1&token_hash=AAGpSI6lyHm3-xCQSFOyyZ_SkJOzfdMIxfa-gYgCVS25pw)
-
-## Quickstart
-
-Using Docker: Deploy in 5 minutes or less using [official quickstart guide at cabotapp.com](http://cabotapp.com/qs/quickstart.html). (See also https://hub.docker.com/r/cabotapp/cabot/)
-
-## How it works
-
-Docs have moved to [cabotapp.com](http://cabotapp.com)
-
-Sections:
-
-*   [Configuration](http://cabotapp.com/use/configuration.html)
-*   [Deployment](http://cabotapp.com/use/deployment.html)
-*   [Services](http://cabotapp.com/use/services.html)
-*   [Graphite checks](http://cabotapp.com/use/graphite-checks.html)
-*   [Jenkins checks](http://cabotapp.com/use/jenkins-checks.html)
-*   [HTTP checks](http://cabotapp.com/use/http-checks.html)
-*   [Alerting](http://cabotapp.com/use/alerting.html)
-*   [Users](http://cabotapp.com/use/users.html)
-*   [Rota](http://cabotapp.com/use/rota.html)
-
-For those who want to contribute:
-
-*   [Help develop](http://cabotapp.com/dev/get-started.html)
-*   [Contribute code](http://cabotapp.com/dev/contribute-code.html)
-
-## FAQ
-
-### Why "Cabot"?
-
-My dog is called Cabot and he loves monitoring things. Mainly the presence of food in his immediate surroundings, or perhaps the frequency of squirrel visits to our garden. He also barks loudly to alert us on certain events (e.g. the postman coming to the door).
-
-![Cabot watching... something](https://dl.dropboxusercontent.com/sc/w0k0185wur929la/RN6X-PkZIl/0?dl=1&token_hash=AAEvyK-dMHsvMPwMsx89tSHXsUlMC8WN_fIu_H1Vo9wxWA)
-
-It's just a lucky coincidence that his name sounds like he could be an automation tool.
-
-## API
-
-The API has automatically generated documentation available by browsing https://cabot.yourcompany.com/api.  The browsable documentation displays example GET requests and lists other allowed HTTP methods.  
-
-To view individual items, append the item `id` to the url.  For example, to view `graphite_check` 1, browse:
-```
-/api/graphite_checks/1/
-```
-
-### Authentication
-
-The API allows HTTP basic auth using standard Django usernames and passwords as well as session authentication (by submitting the login form on the login page).  The API similarly uses standard Django permissions to allow and deny API access.
-
-All resources are GETable by any authenticated user, but individual permissions must be granted for POST, PUT, and other write methods.
-
-As an example, for POST access to all `status_check` subclasses, add the following permissions:
-```
-cabotapp | status check | Can add graphite status check
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><h1 tabindex="-1" dir="auto"><a id="user-content-cabot" class="anchor" aria-hidden="true" tabindex="-1" href="#cabot"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">卡博特</font></font></h1>
+<p dir="auto"><a href="https://travis-ci.org/arachnys/cabot" rel="nofollow"><img src="https://camo.githubusercontent.com/b516d142a8fc2a228d1a70b575e5529d5c47245071b54598d1e149b4731c025a/68747470733a2f2f7472617669732d63692e6f72672f61726163686e79732f6361626f742e7376673f6272616e63683d6d6173746572" alt="构建状态" data-canonical-src="https://travis-ci.org/arachnys/cabot.svg?branch=master" style="max-width: 100%;"></a>
+<a href="https://badge.fury.io/py/cabot" rel="nofollow"><img src="https://camo.githubusercontent.com/32b347ddec7e738eb7039e9455f887ba2f0a5925d34ce2d339313b72d9dce630/68747470733a2f2f62616467652e667572792e696f2f70792f6361626f742e737667" alt="PyPI版本" data-canonical-src="https://badge.fury.io/py/cabot.svg" style="max-width: 100%;"></a>
+<a href="https://codecov.io/github/arachnys/cabot?branch=master" rel="nofollow"><img src="https://camo.githubusercontent.com/27b4ed1ba63a53f31b9cd23270c3ddcc838b1ad1ef3a9bd326171f2751987ab7/68747470733a2f2f636f6465636f762e696f2f6769746875622f61726163686e79732f6361626f742f636f7665726167652e7376673f6272616e63683d6d6173746572" alt="覆盖状态" data-canonical-src="https://codecov.io/github/arachnys/cabot/coverage.svg?branch=master" style="max-width: 100%;"></a>
+<a href="https://opensource.org/licenses/MIT" rel="nofollow"><img src="https://camo.githubusercontent.com/a4426cbe5c21edb002526331c7a8fbfa089e84a550567b02a0d829a98b136ad0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f4c6963656e73652d4d49542d79656c6c6f772e737667" alt="许可证：麻省理工学院" data-canonical-src="https://img.shields.io/badge/License-MIT-yellow.svg" style="max-width: 100%;"></a>
+<a href="https://gitter.im/arachnys/cabot" rel="nofollow"><img src="https://camo.githubusercontent.com/ac092481ae8fef32b20592f3e1d05afe5282c4099ebd446281ba214d62baaeab/68747470733a2f2f696d672e736869656c64732e696f2f6769747465722f726f6f6d2f61726163686e79732f6361626f742e737667" alt="吉特" data-canonical-src="https://img.shields.io/gitter/room/arachnys/cabot.svg" style="max-width: 100%;"></a></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-maintainers-wanted" class="anchor" aria-hidden="true" tabindex="-1" href="#maintainers-wanted"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">需要维护人员</font></font></h2>
+<p dir="auto"><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">卡博特很稳定，并被数百家公司和个人在生产中使用，但并未得到积极维护。我们希望将项目的维护工作移交给一名或多名负责任且经验丰富的维护人员。如果您有兴趣，</font><font style="vertical-align: inherit;">请发送电子邮件至</font></font><a href="mailto:cabot@arachnys.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cabot@arachnys.com</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">，并提供一些有关您自己的信息（github 个人资料和/或简历）。</font></font></strong></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-why-choose-cabot" class="anchor" aria-hidden="true" tabindex="-1" href="#why-choose-cabot"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为什么选择卡博特</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cabot 是一个免费、开源、自托管的基础设施监控平台，它提供了</font></font><a href="http://www.pagerduty.com" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">PagerDuty</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="http://www.serverdensity.com" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Server Density</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="http://www.pingdom.com" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pingdom</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">和</font></font><a href="http://www.nagios.org" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nagios</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">的一些最佳功能，但没有成本和复杂性。 （Nagios，我主要是在看你。）</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">它提供了一个 Web 界面，允许您监控服务（例如“Stage Redis 服务器”、“生产 ElasticSearch 集群”），并在这些服务开始出现问题或出现故障时向您的值班团队发送电话、短信或 hipchat/电子邮件警报 -无需编写任何代码。最重要的是，您可以使用已经推送到 Graphite/statsd 的数据来生成警报，而不是实施和维护全新的数据收集器系统。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">您可以根据以下内容发出警报：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><a href="https://github.com/graphite-project/graphite-web"><font style="vertical-align: inherit;">来自Graphite</font></a><font style="vertical-align: inherit;">的指标</font></font><a href="https://github.com/graphite-project/graphite-web"><font style="vertical-align: inherit;"></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Web端点的状态码和响应内容</font></font></li>
+<li><a href="http://jenkins-ci.org" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Jenkins</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">构建状态</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"></font><a href="https://www.arachnys.com" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我们在Arachnys</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">建立了 Cabot 作为圣诞节项目</font><font style="vertical-align: inherit;">，因为我们无法完全理解 Nagios，而且那里似乎没有其他东西适合我们的用例。我们将其开源，希望其他人发现它有用。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cabot 是用 Python 编写的，并使用</font></font><a href="https://www.djangoproject.com/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Django</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="http://getbootstrap.com/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bootstrap</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">、</font></font><a href="http://fontawesome.io" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Font Awesome</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以及大量其他底层功能。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-screenshots" class="anchor" aria-hidden="true" tabindex="-1" href="#screenshots"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">截图</font></font></h2>
+<h3 tabindex="-1" dir="auto"><a id="user-content-services-dashboard" class="anchor" aria-hidden="true" tabindex="-1" href="#services-dashboard"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">服务仪表板</font></font></h3>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d7e259882d534fe8d1699b2b920d7fcf93b0877328c02ee990276561c64c331c/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f732f6367707865333932396973327561722f6361626f742d736572766963652d64617368626f6172642e706e673f646c3d3126746f6b656e5f686173683d414148726c446973557a57527870673839324c686c4b515746524e536b5a4b44376c5f7a6453784e442d594b6877"><img src="https://camo.githubusercontent.com/d7e259882d534fe8d1699b2b920d7fcf93b0877328c02ee990276561c64c331c/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f732f6367707865333932396973327561722f6361626f742d736572766963652d64617368626f6172642e706e673f646c3d3126746f6b656e5f686173683d414148726c446973557a57527870673839324c686c4b515746524e536b5a4b44376c5f7a6453784e442d594b6877" alt="服务仪表板" data-canonical-src="https://dl.dropboxusercontent.com/s/cgpxe3929is2uar/cabot-service-dashboard.png?dl=1&amp;token_hash=AAHrlDisUzWRxpg892LhlKQWFRNSkZKD7l_zdSxND-YKhw" style="max-width: 100%;"></a></p>
+<h3 tabindex="-1" dir="auto"><a id="user-content-single-service-overview" class="anchor" aria-hidden="true" tabindex="-1" href="#single-service-overview"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">单一服务概览</font></font></h3>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/d5e9ce285bb57c817de84620cbfc5a8511c8e845a843c6bac8aab829415d5546/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f732f35343170306b62713370776f6e65362f6361626f742d736572766963652d7374617475732e706e673f646c3d3126746f6b656e5f686173683d414147705349366c79486d332d78435153464f79795a5f536b4a4f7a66644d497866612d67596743565332357077"><img src="https://camo.githubusercontent.com/d5e9ce285bb57c817de84620cbfc5a8511c8e845a843c6bac8aab829415d5546/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f732f35343170306b62713370776f6e65362f6361626f742d736572766963652d7374617475732e706e673f646c3d3126746f6b656e5f686173683d414147705349366c79486d332d78435153464f79795a5f536b4a4f7a66644d497866612d67596743565332357077" alt="个人服务概览" data-canonical-src="https://dl.dropboxusercontent.com/s/541p0kbq3pwone6/cabot-service-status.png?dl=1&amp;token_hash=AAGpSI6lyHm3-xCQSFOyyZ_SkJOzfdMIxfa-gYgCVS25pw" style="max-width: 100%;"></a></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-quickstart" class="anchor" aria-hidden="true" tabindex="-1" href="#quickstart"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速开始</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"></font><a href="http://cabotapp.com/qs/quickstart.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 Docker：使用cabotapp.com 上的官方快速入门指南</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">在 5 分钟或更短的时间内完成部署</font><font style="vertical-align: inherit;">。 （另请参阅</font></font><a href="https://hub.docker.com/r/cabotapp/cabot/" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://hub.docker.com/r/cabotapp/cabot/</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">）</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-how-it-works" class="anchor" aria-hidden="true" tabindex="-1" href="#how-it-works"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">怎么运行的</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文档已移至</font></font><a href="http://cabotapp.com" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">cabotapp.com</font></font></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">部分：</font></font></p>
+<ul dir="auto">
+<li><a href="http://cabotapp.com/use/configuration.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">配置</font></font></a></li>
+<li><a href="http://cabotapp.com/use/deployment.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">部署</font></font></a></li>
+<li><a href="http://cabotapp.com/use/services.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">服务</font></font></a></li>
+<li><a href="http://cabotapp.com/use/graphite-checks.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">石墨检查</font></font></a></li>
+<li><a href="http://cabotapp.com/use/jenkins-checks.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">詹金斯检查</font></font></a></li>
+<li><a href="http://cabotapp.com/use/http-checks.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">HTTP 检查</font></font></a></li>
+<li><a href="http://cabotapp.com/use/alerting.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">警报</font></font></a></li>
+<li><a href="http://cabotapp.com/use/users.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用户</font></font></a></li>
+<li><a href="http://cabotapp.com/use/rota.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">罗塔</font></font></a></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">对于那些想要贡献的人：</font></font></p>
+<ul dir="auto">
+<li><a href="http://cabotapp.com/dev/get-started.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">帮助开发</font></font></a></li>
+<li><a href="http://cabotapp.com/dev/contribute-code.html" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">贡献代码</font></font></a></li>
+</ul>
+<h2 tabindex="-1" dir="auto"><a id="user-content-faq" class="anchor" aria-hidden="true" tabindex="-1" href="#faq"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">常问问题</font></font></h2>
+<h3 tabindex="-1" dir="auto"><a id="user-content-why-cabot" class="anchor" aria-hidden="true" tabindex="-1" href="#why-cabot"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">为什么是“卡伯特”？</font></font></h3>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我的狗叫卡伯特，他喜欢监视事物。主要是他周围环境中食物的存在，或者松鼠访问我们花园的频率。他还会大声吠叫以提醒我们某些事件（例如邮递员上门）。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/5d875d6b32fc500a9ab9bd4bbd6da9b533c45f89733f3421f00ec67840e0d65f/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f73632f77306b303138357775723932396c612f524e36582d506b5a496c2f303f646c3d3126746f6b656e5f686173683d41414576794b2d644d4873764d50774d737838397453485873556c4d4338574e5f6649755f4831566f3977785741"><img src="https://camo.githubusercontent.com/5d875d6b32fc500a9ab9bd4bbd6da9b533c45f89733f3421f00ec67840e0d65f/68747470733a2f2f646c2e64726f70626f7875736572636f6e74656e742e636f6d2f73632f77306b303138357775723932396c612f524e36582d506b5a496c2f303f646c3d3126746f6b656e5f686173683d41414576794b2d644d4873764d50774d737838397453485873556c4d4338574e5f6649755f4831566f3977785741" alt="卡伯特在看着……什么东西" data-canonical-src="https://dl.dropboxusercontent.com/sc/w0k0185wur929la/RN6X-PkZIl/0?dl=1&amp;token_hash=AAEvyK-dMHsvMPwMsx89tSHXsUlMC8WN_fIu_H1Vo9wxWA" style="max-width: 100%;"></a></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这只是一个幸运的巧合，他的名字听起来像是一个自动化工具。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-api" class="anchor" aria-hidden="true" tabindex="-1" href="#api"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">应用程序编程接口</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">API 已自动生成可通过浏览</font></font><a href="https://cabot.yourcompany.com/api" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://cabot.yourcompany.com/api</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">获取的文档。可浏览的文档显示示例 GET 请求并列出其他允许的 HTTP 方法。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">要查看单个项目，请将项目附加</font></font><code>id</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">到 URL。例如，要查看</font></font><code>graphite_check</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1，请浏览：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>/api/graphite_checks/1/
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="/api/graphite_checks/1/" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<h3 tabindex="-1" dir="auto"><a id="user-content-authentication" class="anchor" aria-hidden="true" tabindex="-1" href="#authentication"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">验证</font></font></h3>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该 API 允许使用标准 Django 用户名和密码以及会话身份验证（通过在登录页面上提交登录表单）进行 HTTP 基本身份验证。 API 同样使用标准 Django 权限来允许和拒绝 API 访问。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">任何经过身份验证的用户都可以获取所有资源，但必须为 POST、PUT 和其他写入方法授予单独的权限。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">例如，要对所有</font></font><code>status_check</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">子类进行 POST 访问，请添加以下权限：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>cabotapp | status check | Can add graphite status check
 cabotapp | status check | Can add http status check
 cabotapp | status check | Can add icmp status check
 cabotapp | status check | Can add jenkins status check
-```
-
-Access the Django admin page at https://cabot.yourcompany.com/admin to add/remove users, change user permissions, add/remove groups for group-based permission control, and change group permissions.
-
-### Sorting and Filtering
-
-Sorting and filtering can be used by both REST clients and on the browsable API.  All fields visible in the browsable API can be used for filtering and sorting.
-
-Get all `jenkins_checks` with debounce enabled and CRITICAL importance:
-```
-https://cabot.yourcompany.com/api/jenkins_checks/?debounce=1&importance=CRITICAL
-```
-
-Sort `graphite_checks` by `name` field, ascending:
-```
-https://cabot.yourcompany.com/api/graphite_checks/?ordering=name
-```
-
-Sort by `name` field, descending:
-```
-https://cabot.yourcompany.com/api/graphite_checks/?ordering=-name
-```
-
-Other (non-Cabot specific) examples are available in the [Django REST Framework](http://www.django-rest-framework.org/api-guide/filtering#djangofilterbackend) documentation.
-
-## License
-
-See `LICENSE` file in this repo.
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="cabotapp | status check | Can add graphite status check
+cabotapp | status check | Can add http status check
+cabotapp | status check | Can add icmp status check
+cabotapp | status check | Can add jenkins status check" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">访问 Django 管理页面</font></font><a href="https://cabot.yourcompany.com/admin" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://cabot.yourcompany.com/admin</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">以添加/删除用户、更改用户权限、添加/删除组以进行基于组的权限控制以及更改组权限。</font></font></p>
+<h3 tabindex="-1" dir="auto"><a id="user-content-sorting-and-filtering" class="anchor" aria-hidden="true" tabindex="-1" href="#sorting-and-filtering"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">排序和过滤</font></font></h3>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">REST 客户端和可浏览的 API 都可以使用排序和过滤功能。可浏览 API 中可见的所有字段都可用于过滤和排序。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"></font><code>jenkins_checks</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">启用去抖功能并</font><font style="vertical-align: inherit;">获得关键重要性：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>https://cabot.yourcompany.com/api/jenkins_checks/?debounce=1&amp;importance=CRITICAL
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="https://cabot.yourcompany.com/api/jenkins_checks/?debounce=1&amp;importance=CRITICAL" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"></font><code>graphite_checks</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按</font></font><code>name</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段升序</font><font style="vertical-align: inherit;">排序：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>https://cabot.yourcompany.com/api/graphite_checks/?ordering=name
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="https://cabot.yourcompany.com/api/graphite_checks/?ordering=name" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">按</font></font><code>name</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">字段排序，降序：</font></font></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code>https://cabot.yourcompany.com/api/graphite_checks/?ordering=-name
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value="https://cabot.yourcompany.com/api/graphite_checks/?ordering=-name" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"></font><a href="http://www.django-rest-framework.org/api-guide/filtering#djangofilterbackend" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Django REST Framework</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">文档中提供了其他（非 Cabot 特定）示例</font><font style="vertical-align: inherit;">。</font></font></p>
+<h2 tabindex="-1" dir="auto"><a id="user-content-license" class="anchor" aria-hidden="true" tabindex="-1" href="#license"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执照</font></font></h2>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">请参阅</font></font><code>LICENSE</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">此存储库中的文件。</font></font></p>
+</article></div>
